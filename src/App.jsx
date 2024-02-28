@@ -1,16 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const choices = ['paper','rock','cisor'];
 
-  const game = () => {
-    const [playerchoice, setplayerchoice] = useState(null);
-    const [computerchoice, setcomputerchoicechoice] = useState(null);
-    const [result, setresultchoice] = useState(null);
-  };
+  game();
 
   const resetgame = () => {
     setplayerchoice(null);
@@ -24,29 +18,48 @@ function App() {
 
   const determineWinner = (player, computer) => {
     if (player === computer) return 'Égalité !';
-    if ((player === 'pierre' && computer === 'ciseaux') ||
-        (player === 'feuille' && computer === 'pierre') ||
-        (player === 'ciseaux' && computer === 'feuille')) {
+    if ((player === 'rock' && computer === 'cisor') ||
+        (player === 'paper' && computer === 'rock') ||
+        (player === 'cisor' && computer === 'paper')) {
       return 'Gagné !';
     } else {
       return 'Perdu !';
     }
   };
   
+  const play = (choice) => {
+    const computerchoice = getRandomChoice();
+    const result = determineWinner(choice, computerchoice);
+    setcomputerchoice(computerchoice);
+    setplayerchoice(choice);
+    setresult(result);
+  }
 
 
-  return(
+  return (
     <>
 
-      <div>
-        <h1>Rock Paper Cisor</h1>
-      </div>
-      <div>
-        <button onClick={}></button>
+      <div className='Game'>
+          <h1>Rock Paper Cisor</h1>
+        <div className='choice'>
+          {choices.map(choice => (
+            <button key={choice} onClick={() => play(choice)} disabled={!!result}> 
+              {choice}
+            </button>
+          ))}
+        </div>
+        {playerchoice && computerchoice && (
+          <div className='results'>
+            <p>Vous avez prit {playerchoice}</p>
+            <p>L'ordinateur a choisit {computerchoice}</p>
+            <p>Résultat : {result}</p>
+            <button onClick={resetgame}>Rejouer</button>
+          </div>
+        )}
       </div>
 
     </>
-  )
-}
+  );
+};
 
 export default App
