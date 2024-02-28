@@ -3,12 +3,14 @@ import './App.css'
 
 function App() {
   const choices = ['paper','rock','cisor'];
+  const [playerchoice, setplayerchoice] = useState(null);
+  const [computerchoice, setcomputerchoice] = useState(null);
+  const [result, setresultchoice] = useState(null);
 
-  game();
 
   const resetgame = () => {
     setplayerchoice(null);
-    setcomputerchoicechoice(null);
+    setcomputerchoice(null);
     setresultchoice(null);
   };
 
@@ -32,7 +34,7 @@ function App() {
     const result = determineWinner(choice, computerchoice);
     setcomputerchoice(computerchoice);
     setplayerchoice(choice);
-    setresult(result);
+    setresultchoice(result);
   }
 
 
