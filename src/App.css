@@ -4,25 +4,3 @@
   padding: 2rem;
   text-align: center;
 }
-
-h1 {
-  color: rgb(247, 239, 247);
-}
-
-.game{
-  text-align: center;
-}
-
-.choices {
-  margin-bottom: 20px;
-}
-
-.choices button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
-
-.results {
-  margin-top: 20px;
-}
